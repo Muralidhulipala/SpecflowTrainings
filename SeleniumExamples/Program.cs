@@ -63,7 +63,7 @@ namespace SeleniumExamples
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            //Webdriver wait explicit wait
+            //Webdriver wait explicit wait example
             WebDriverWait wait = new WebDriverWait(driver,TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("")));
 
