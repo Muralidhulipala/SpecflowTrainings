@@ -5,6 +5,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace SeleniumExamples
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             IWebDriver driver = new ChromeDriver();
             //Text Field
@@ -80,7 +81,24 @@ namespace SeleniumExamples
             a.ClickAndHold(source).MoveToElement(target).Release().Build().Perform();
             a.DragAndDrop(source, target).Build().Perform();
 
+            //findeemnts
 
+            var links=driver.FindElements(By.TagName("a"));
+            HttpClient client = new HttpClient();
+            foreach(var link in links)
+            {
+                link.Click();
+                string url = link.GetAttribute("href");
+                HttpResponseMessage msg = await client.GetAsync(url);
+                if((int)msg.StatusCode>=400)
+                {
+                    //invalid links
+                }
+                else { //valid link
+                }
+
+                        
+            }
 
 
 
