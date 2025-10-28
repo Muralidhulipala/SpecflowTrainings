@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,24 @@ namespace SeleniumExamples
             //Webdriver wait explicit wait example
             WebDriverWait wait = new WebDriverWait(driver,TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("")));
+
+            //Actions class
+            Actions a = new Actions(driver);
+            a.SendKeys("").Build().Perform();
+            a.MoveToElement(driver.FindElement(By.Id(""))).ContextClick();
+            a.MoveToElement(driver.FindElement(By.Id(""))).DoubleClick();
+
+            //draganddrop
+            var source = driver.FindElement(By.Id(""));
+            var target = driver.FindElement(By.Id(""));
+            a.ClickAndHold(source).MoveToElement(target).Release().Build().Perform();
+            a.DragAndDrop(source, target).Build().Perform();
+
+
+
+
+
+
 
 
 
